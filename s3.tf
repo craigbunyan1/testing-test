@@ -3,11 +3,11 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "b" {
-  bucket = "testing-test-tf-bucket"
+  bucket = "testing-test-tf-bucket-ci"
   acl    = "private"
 
   tags = {
-    Name        = "My second bucket"
+    Name        = "My third bucket"
     Environment = "Dev"
   }
 }
