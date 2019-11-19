@@ -13,8 +13,8 @@ jobs:
    steps:
      - checkout
      - run: terraform init
-     - run: terraform plan
-     - run: terraform apply -input=false
+     - run: terraform plan -input=false -out=tfplan
+     - run: terraform apply -input=false tfplan
 workflows:
  version: 2
  one_and_two:
