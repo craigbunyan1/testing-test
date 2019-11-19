@@ -1,15 +1,32 @@
 version: 2
 jobs:
- simple_tf_build:
+ validate:
+   docker:
+     - image: hashicorp/terraform:0.12.14
+   steps:
+     - run: terraform init
+ plan:
    docker:
      - image: hashicorp/terraform:0.12.14
    steps:
      - run: terraform init
      - run: terraform plan -input=false -out=tfplan
+ apply:
+   docker:
+     - image: hashicorp/terraform:0.12.14
+   steps:
      - run: terraform apply -input=false tfplan
 workflows:
  version: 2
- one_and_two:
+ tf_build:
    jobs:
      - checkout
-     - simple_tf_build
+     - validate:
+         requires:
+           checkout
+     - plan:
+         requires:
+           validate
+     - apply:
+         requires:
+           plan
