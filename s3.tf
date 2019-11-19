@@ -12,7 +12,7 @@ resource "aws_s3_bucket" "b" {
   }
 }
 
-resource "aws_s3_bucket" "b" {
+resource "aws_s3_bucket" "b2" {
   bucket = "testing-test-tf-bucket-ci"
   acl    = "private"
 
