@@ -1,13 +1,6 @@
 version: 2
 jobs:
- one:
-   docker:
-     - image: circleci/python:3.7.4
-   steps:
-     - checkout
-     - run: echo "A first hello"
-     - run: sleep 10
- two:
+ simple_tf_build:
    docker:
      - image: hashicorp/terraform:0.12.14
    steps:
@@ -15,9 +8,3 @@ jobs:
      - run: terraform init
      - run: terraform plan -input=false -out=tfplan
      - run: terraform apply -input=false tfplan
-workflows:
- version: 2
- one_and_two:
-   jobs:
-     - one
-     - two
