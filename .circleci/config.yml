@@ -10,12 +10,14 @@ jobs:
    docker:
      - image: hashicorp/terraform:0.12.14
    steps:
+     - checkout
      - run: terraform init
      - run: terraform plan -input=false -out=tfplan
  apply:
    docker:
      - image: hashicorp/terraform:0.12.14
    steps:
+     - checkout
      - run: terraform apply -input=false tfplan
 workflows:
  version: 2
